@@ -25,6 +25,7 @@ export default function agentsList({ setCurrentAgent, currentAgent, currentPko, 
         <Button
           onClick={setCurrentAgent(agents_elt.agent_id)}
         >
+            {agents_elt.nom}
         </Button>
         <Tag  
           iconId="fr-icon-file-text-fill"
