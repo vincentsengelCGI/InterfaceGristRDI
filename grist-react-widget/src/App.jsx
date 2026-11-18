@@ -1,122 +1,112 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import Navigation from "./components/Layout/Navigation";
+import Workspace from "./components/Layout/Workspace";
+import Header from "./components/Layout/Header";
+import { useState } from "react";
+import 'react-datasheet-grid/dist/style.css'
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+
+export default function App() {
+  const [tab, setTab] = useState("fiche");
+  const [currentPko, setCurrentPko] = useState(1);
+  const [currentAgent, setCurrentAgent] = useState(null);
+  const [Pko, setPko] = useState(
+    [
+      {
+        id: 0,
+        nom: "Janvier 2026",
+        etat: "actif"
+      },
+      {
+        id: 1,
+        nom: "Fevrier 2026",
+        etat: "annule"
+      },
+      {
+        id: 2,
+        nom: "Mars 2026",
+        etat: "termine"
+      },
+      {
+        id: 3,
+        nom: "Avril 2026",
+        etat: "actif"
+      },
+    ]
+  );
+    const [Agents, setAgents] = useState(
+    [
+      {
+        id: 0,
+        nom: "Doe",
+        prenom: "John",
+        pko: 0,
+        etat: "actif"
+      },
+      {
+        id: 1,
+        nom: "Doe",
+        prenom: "Jane",
+        pko: 1,
+        etat: "actif"
+      },
+      {
+        id: 2,
+        nom: "Durand",
+        prenom: "John",
+        pko: 0,
+        etat: "actif"
+      },
+      {
+        id: 3,
+        nom: "Dupond",
+        prenom: "Jane",
+        pko: 1,
+        etat: "actif"
+      },
+      {
+        id: 4,
+        nom: "Dupont",
+        prenom: "John",
+        pko: 2,
+        etat: "actif"
+      },
+      {
+        id: 5,
+        nom: "Martin",
+        prenom: "Jane",
+        pko: 3,
+        etat: "actif"
+      },
+    ]
+  );
+
+  console.log("Pko : ", Pko);
+  console.log("tab : ", tab);
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+      <Header />
+      <div className="principal">
+        <div className="navigation-laterale">
+          <Navigation  
+            setCurrentPko={ setCurrentPko } 
+            setCurrentAgent={ setCurrentAgent } 
+            currentAgent={ currentAgent }
+            tab={ tab } 
+            pko={ Pko } 
+            agents={ Agents } 
+            currentPko={ currentPko }
+          />
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+        <Workspace 
+          setTab={ setTab  } 
+          tab={ tab } 
+          pko={ Pko } 
+          agents={ Agents } 
+          currentPko={ currentPko }
+        />
+      </div>
     </>
-  )
-}
-
-export default App
+  );
+} 

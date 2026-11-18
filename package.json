@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@codegouvfr/react-dsfr": "^1.36.0"
+  }
+}
